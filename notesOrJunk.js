@@ -8,7 +8,7 @@
 //   const todoDate = todoElement.querySelector(".todo__date");
 //   const todoDeleteBtn = todoElement.querySelector(".todo__delete-btn");
 
-//      todoNameEl.textContent = data.name;
+//   todoNameEl.textContent = data.name;
 //   todoCheckboxEl.checked = data.completed;
 
 // todoCheckboxEl.id = `todo-${data.id}`;
