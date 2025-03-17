@@ -1,6 +1,6 @@
 class Todo {
   constructor(data, selector) {
-    this._data - data;
+    this._data = data;
     this._templateElement = document.querySelector(selector);
   }
 
@@ -47,8 +47,8 @@ class Todo {
     const todoNameEl = this._todoElement.querySelector(".todo__name");
     todoNameEl.textContent = this._data.name;
 
-    this._setEventListeners();
     this._generateCheckboxEl();
+    this._setEventListeners();
     return this._todoElement;
   }
 }
