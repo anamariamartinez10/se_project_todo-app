@@ -46,7 +46,7 @@ class Todo {
 
     const todoNameEl = this._todoElement.querySelector(".todo__name");
     todoNameEl.textContent = this._data.name;
-
+    this._generateDate();
     this._generateCheckboxEl();
     this._setEventListeners();
     return this._todoElement;
