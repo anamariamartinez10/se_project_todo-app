@@ -3,13 +3,13 @@ import { initialTodos, validationConfig } from "../utils/constants.js";
 import Section from "../components/Section.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import Todo from "../components/Todo.js";
+import TodoCounter from "../components/TodoCounter.js";
 import FormValidator from "../components/FormValidator.js";
 
 const addTodoButton = document.querySelector(".button_action_add");
 // const addTodoPopup = document.querySelector("#add-todo-popup");
 const addTodoForm = document.forms["add-todo-form"];
-
-// const addTodoCloseBtn = addTodoPopup.querySelector(".popup__close");
+// const addTodoCloseBtn = document.forms[".popup__close"];
 // const todosList = document.querySelector(".todos__list");
 
 const generateTodo = (data) => {
@@ -29,46 +29,21 @@ const section = new Section({
 section.renderItems();
 
 //PopupWithForm class
-
 const formPopup = new PopupWithForm("#add-todo-popup", (formData) => {
-  formPopup.setEventListeners();
-  formPopup.open();
-  formPopup.close();
+  const todoElement = generateTodo(formData);
+  section.addItem(todoElement);
 });
 
-// const openModal = (modal) => {
-//   modal.classList.add("popup_visible");
-// };
+formPopup.setEventListeners();
 
-// const closeModal = (modal) => {
-//   modal.classList.remove("popup_visible");
-// };
-
-// addTodoButton.addEventListener("click", () => {
-//   openModal(addTodoPopup);
-// });
-
-// addTodoCloseBtn.addEventListener("click", () => {
-//   closeModal(addTodoPopup);
-// });
-
-// addTodoForm.addEventListener("submit", (evt) => {
-//   evt.preventDefault();
-//   const name = evt.target.name.value;
-//   const dateInput = evt.target.date.value;
-
-// Create a date object and adjust for timezone
-const date = new Date(dateInput);
-date.setMinutes(date.getMinutes() + date.getTimezoneOffset());
-
-const id = uuidv4();
-const values = { name, date, id };
-const todoElement = generateTodo(values);
-section.addItem(todoElement);
-closeModal(addTodoPopup);
-newTodoValidator.resetValidation();
+addTodoButton.addEventListener("click", () => {
+  formPopup.open();
+});
 
 // TodoCounter Class
+const counter = new TodoCounter(initialTodos, ".counter__text");
+counter.updateCompleted();
+counter.updateTotal();
 
 // FromValidator class
 const newTodoValidator = new FormValidator(validationConfig, addTodoForm);
