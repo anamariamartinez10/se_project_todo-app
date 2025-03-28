@@ -7,6 +7,11 @@ class Todo {
   _setEventListeners() {
     this._todoCheckboxEl.addEventListener("change", () => {
       this._data.completed = !this._data.completed;
+      const checkedEvent = new CustomEvent("todoCheck", {
+        detail: { isChecked: this._todoCheckboxEl.checked },
+        bubbles: true,
+      });
+      this._templateElement.dispatchEvent(checkedEvent);
     });
 
     this._todoDeleteBtn = this._todoElement.querySelector(".todo__delete-btn");

@@ -11,6 +11,7 @@ const addTodoButton = document.querySelector(".button_action_add");
 const addTodoForm = document.forms["add-todo-form"];
 // const addTodoCloseBtn = document.forms[".popup__close"];
 // const todosList = document.querySelector(".todos__list");
+const checkbox = document.querySelector(".todo__checkbox");
 
 const generateTodo = (data) => {
   const todo = new Todo(data, "#todo-template");
@@ -34,16 +35,14 @@ const formPopup = new PopupWithForm("#add-todo-popup", (formData) => {
   section.addItem(todoElement);
 });
 
-formPopup.setEventListeners();
-
 addTodoButton.addEventListener("click", () => {
   formPopup.open();
 });
 
 // TodoCounter Class
 const counter = new TodoCounter(initialTodos, ".counter__text");
-counter.updateCompleted();
-counter.updateTotal();
+document.addEventListener("todoCheck", counter.updateCompleted);
+document.addEventListener("todoCheck", counter.updateTotal);
 
 // FromValidator class
 const newTodoValidator = new FormValidator(validationConfig, addTodoForm);

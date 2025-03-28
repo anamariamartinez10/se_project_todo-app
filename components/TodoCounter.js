@@ -4,7 +4,6 @@ export default class TodoCounter {
     this._completed = todos.filter((todo) => todo.isComplete).length;
     this._total = todos.length + 1;
     this._updateText();
-    this._setEventListeners();
   }
 
   // Call this when a checkbox is clicked, and when a completed
@@ -27,13 +26,5 @@ export default class TodoCounter {
 
   _updateText() {
     this._element.textContent = `Showing ${this._completed} out of ${this._total} completed`;
-  }
-
-  _setEventListeners() {
-    this._element.addEventListener("change", (evt) => {
-      if (evt.target.checked) {
-        this.updateCompleted();
-      }
-    });
   }
 }
