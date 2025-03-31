@@ -9,6 +9,7 @@ import FormValidator from "../components/FormValidator.js";
 const addTodoButton = document.querySelector(".button_action_add");
 // const addTodoPopup = document.querySelector("#add-todo-popup");
 const addTodoForm = document.forms["add-todo-form"];
+const createButton = document.forms["popup__button"];
 // const addTodoCloseBtn = document.forms[".popup__close"];
 // const todosList = document.querySelector(".todos__list");
 const checkbox = document.querySelector(".todo__checkbox");
@@ -39,6 +40,8 @@ addTodoButton.addEventListener("click", () => {
   formPopup.open();
 });
 
+formPopup.setEventListeners();
+
 // TodoCounter Class
 const counter = new TodoCounter(initialTodos, ".counter__text");
 // document.addEventListener("todoCheck", counter.updateCompleted);
@@ -57,3 +60,5 @@ function handleDelete(completed) {
 // FromValidator class
 const newTodoValidator = new FormValidator(validationConfig, addTodoForm);
 newTodoValidator.enableValidation();
+
+// How do you increase the total number when you add a todo?
