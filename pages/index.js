@@ -14,7 +14,7 @@ const addTodoForm = document.forms["add-todo-form"];
 const checkbox = document.querySelector(".todo__checkbox");
 
 const generateTodo = (data) => {
-  const todo = new Todo(data, "#todo-template");
+  const todo = new Todo(data, "#todo-template", handleCheck, handleDelete);
   const todoElement = todo.getView();
   return todoElement;
 };
@@ -41,8 +41,18 @@ addTodoButton.addEventListener("click", () => {
 
 // TodoCounter Class
 const counter = new TodoCounter(initialTodos, ".counter__text");
-document.addEventListener("todoCheck", counter.updateCompleted);
-document.addEventListener("todoCheck", counter.updateTotal);
+// document.addEventListener("todoCheck", counter.updateCompleted);
+// document.addEventListener("todoCheck", counter.updateTotal);
+
+function handleCheck(completed) {
+  counter.updateCompleted(completed);
+}
+
+function handleDelete(completed) {
+  if (completed) {
+    counter.updateCompleted(false);
+  }
+}
 
 // FromValidator class
 const newTodoValidator = new FormValidator(validationConfig, addTodoForm);

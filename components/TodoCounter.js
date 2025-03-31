@@ -1,27 +1,21 @@
 export default class TodoCounter {
   constructor(todos, selector) {
     this._element = document.querySelector(selector);
-    this._completed = todos.filter((todo) => todo.isComplete).length;
-    this._total = todos.length + 1;
+    this._completed = todos.filter((todo) => todo.completed).length;
+    this._total = todos.length;
     this._updateText();
   }
 
-  // Call this when a checkbox is clicked, and when a completed
-  // to-do is deleted.
+  // Call this when a checkbox is clicked, and when a completed to-do is deleted.
+  // increment is boolean
   updateCompleted = (increment) => {
-    const change = increment ? 1 : -1;
-    if (this._completed + change >= 0) {
-      this._completed += change;
-      this._updateText();
-    }
+    this._completed += increment ? 1 : -1;
+    this._updateText();
   };
 
   updateTotal = (increment) => {
-    const change = increment ? 1 : -1;
-    if (this._total + change >= 0) {
-      this._total += change;
-      this._updateText();
-    }
+    this._total += increment ? 1 : -1;
+    this._updateText();
   };
 
   _updateText() {
