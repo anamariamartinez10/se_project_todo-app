@@ -12,8 +12,12 @@ export default class PopupWithForm extends Popup {
     Array.from(this._form.elements).forEach((inputElement) => {
       values[inputElement.name] = inputElement.value;
     });
-
     return values;
+  }
+
+  // Where would I add this in index.js?
+  getForm() {
+    return this._form;
   }
 
   setEventListeners() {
@@ -28,6 +32,5 @@ export default class PopupWithForm extends Popup {
 
   close() {
     super.close();
-    this._form.reset();
   }
 }

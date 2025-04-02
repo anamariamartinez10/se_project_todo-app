@@ -7,27 +7,17 @@ class Todo {
     this._handleDelete = handleDelete;
   }
 
-  // should it be this:
-  // this._data = data.name;
-  // this._data = data.date;
-  // instead of this._data;
-
   _setEventListeners() {
     this._todoCheckboxEl.addEventListener("change", () => {
       this._toggleCompletion();
       this._handleCheck(this._completed);
     });
 
-    //do I need line 22?
     this._todoDeleteBtn = this._todoElement.querySelector(".todo__delete-btn");
     this._todoDeleteBtn.addEventListener("click", () => {
       this._handleDelete(this._completed);
       this._remove();
     });
-
-    // this._todoDeleteBtn.addEventListener("click", () => {
-    //   this._todoElement.remove();
-    // });
   }
 
   _generateCheckboxEl() {

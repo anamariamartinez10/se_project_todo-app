@@ -7,11 +7,6 @@ import TodoCounter from "../components/TodoCounter.js";
 import FormValidator from "../components/FormValidator.js";
 
 const addTodoButton = document.querySelector(".button_action_add");
-// const addTodoPopup = document.querySelector("#add-todo-popup");
-const addTodoForm = document.forms["add-todo-form"];
-// const addTodoCloseBtn = document.forms[".popup__close"];
-// const todosList = document.querySelector(".todos__list");
-const checkbox = document.querySelector(".todo__checkbox");
 
 const generateTodo = (data) => {
   const todo = new Todo(data, "#todo-template", handleCheck, handleDelete);
@@ -30,7 +25,9 @@ const section = new Section({
 section.renderItems();
 
 //PopupWithForm class
+// how exactly would I add formPopup.getForm();
 const formPopup = new PopupWithForm("#add-todo-popup", (formData) => {
+  formData.id = uuidv4();
   const todoElement = generateTodo(formData);
   section.addItem(todoElement);
   counter.updateTotal(true);
@@ -44,8 +41,6 @@ formPopup.setEventListeners();
 
 // TodoCounter Class
 const counter = new TodoCounter(initialTodos, ".counter__text");
-// document.addEventListener("todoCheck", counter.updateCompleted);
-// document.addEventListener("todoCheck", counter.updateTotal);
 
 function handleCheck(completed) {
   counter.updateCompleted(completed);
@@ -56,11 +51,9 @@ function handleDelete(completed) {
   counter.updateTotal(false);
 }
 
-// const handleDelete = (completed) => {
-//   completed && counter.updateCompleted(false);
-//   counter.updateTotal(false);
-// };
-
 // FromValidator class
-const newTodoValidator = new FormValidator(validationConfig, addTodoForm);
+const newTodoValidator = new FormValidator(
+  validationConfig,
+  formPopup.getForm()
+);
 newTodoValidator.enableValidation();
