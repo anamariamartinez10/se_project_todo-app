@@ -15,7 +15,6 @@ export default class PopupWithForm extends Popup {
     return values;
   }
 
-  // Where would I add this in index.js?
   getForm() {
     return this._form;
   }

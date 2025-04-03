@@ -25,12 +25,12 @@ const section = new Section({
 section.renderItems();
 
 //PopupWithForm class
-// how exactly would I add formPopup.getForm();
 const formPopup = new PopupWithForm("#add-todo-popup", (formData) => {
   formData.id = uuidv4();
   const todoElement = generateTodo(formData);
   section.addItem(todoElement);
   counter.updateTotal(true);
+  newTodoValidator.resetValidation();
 });
 
 addTodoButton.addEventListener("click", () => {
